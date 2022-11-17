@@ -1,0 +1,41 @@
+﻿@using esqhinkamil.Book.ViewModel
+
+@model List<ListItemViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-route="EnBook-Add" target="_blank" class="btn btn-secondary">Add new book</a>
+            <a asp-route="EnBook-Delete-bulk" class="btn btn-danger">Bulk delete</a>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <th scope="row">@book.Title</th>
+                        <td>@book.Price</td>
+                        <td>@book.CreatedAt</td>
+                        <td class="d-flex justify-content-between">
+                            <a asp-route="EnBook-Details" asp-route-id="@book.Id" class="col-3 btn btn-primary">Details</a>
+                            <a asp-route="book-update-id" asp-route-id="@book.Id" class="col-3 btn btn-secondary">Update</a>
+                            <a asp-route="EnBook-Delete-id" asp-route-id="@book.Id" class="col-3 btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
